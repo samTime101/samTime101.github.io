@@ -46,7 +46,7 @@ function help() {
     ctx.fillText('clear - CLEARS THE SCREEN', ctx.canvas.width / 2, 110);
     ctx.fillText('whoami - WHO AM I', ctx.canvas.width / 2, 140);
     ctx.fillText('github - MY GITHUB', ctx.canvas.width / 2, 170);
-    ctx.fillText('License - LICENSE OF THIS PAGE', ctx.canvas.width / 2, 200);
+    ctx.fillText('license - LICENSE OF THIS PAGE', ctx.canvas.width / 2, 200);
     setStyle('info');
     ctx.fillText('TYPE THE COMMAND AND PRESS ENTER TO EXECUTE IT', ctx.canvas.width / 2, 250);
 }
