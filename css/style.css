@@ -4,18 +4,20 @@ body {
     justify-content: space-between;
     height: 100vh;
     margin: 0;
-    padding: 0 20px; 
+    padding: 0 20px;
     background-color: #0d0d0d;
-    flex-wrap: wrap; 
-    align-items: center; 
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-#left-div, #center-div, #right-div {
+#left-div,
+#center-div,
+#right-div {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px; 
-    flex: 1 1 300px; 
+    margin-bottom: 20px;
+    flex: 1 1 300px;
 }
 
 #center-div {
@@ -24,7 +26,7 @@ body {
 }
 
 #top-canvas {
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     max-width: 100%;
 }
 
@@ -35,29 +37,99 @@ canvas {
     height: auto;
 }
 
-#command {
-    margin-top: 20px;
-    width: 100%;
-    max-width: 300px;
-    padding: 10px;
-    font-size: 16px;
+#terminal-container {
+    width: 600px;
+    max-width: 100%;
+    height: 400px;
+    background-color: #000;
     border: 2px solid #00ffcc;
     border-radius: 6px;
-    background: #111;
-    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 14px;
+    color: white;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#terminal-container::-webkit-scrollbar {
+    display: none;
+}
+
+#terminal-output {
+    word-break: break-all;
+}
+
+#terminal-input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.prompt .user {
+    color: #8ae234;
+    font-weight: bold;
+}
+
+.prompt .dir {
+    color: #729fcf;
+    font-weight: bold;
+}
+
+.neofetch-logo {
+    color: #ef2929;
+}
+
+.neofetch-label {
+    color: #ef2929;
+    font-weight: bold;
+}
+
+#command {
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 14px;
+    flex: 1;
+    margin-left: 8px;
     outline: none;
+    padding: 0;
 }
 
 @media screen and (max-width: 768px) {
     body {
-        flex-direction: column; 
-        align-items: center; 
+        flex-direction: column;
+        align-items: center;
         justify-content: flex-start;
-        padding: 10px;
+        padding: 10px 5px;
         height: auto;
     }
 
-    #left-div, #center-div, #right-div {
+    #left-div,
+    #center-div,
+    #right-div {
         flex: 1 1 100%;
+        min-width: 100%;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    #terminal-container {
+        width: 100%;
+        max-width: 100vw;
+        height: 50vh;
+        min-height: 300px;
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    #command {
+        font-size: 12px;
     }
 }

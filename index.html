@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +8,24 @@
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body data-bs-theme="dark">
     <div id="left-div">
         <canvas id="left-canvas" style="border: 2px solid #00ffcc;"></canvas>
     </div>
     <div id="center-div">
         <canvas id="top-canvas" style="border:2px solid #00ffcc;"></canvas>
-        <canvas id="canvas" width="600px" height="400px"></canvas>
-        <input type="text" name="command" id="command" placeholder="Enter commands here">
+        <div id="terminal-container">
+            <div id="terminal-output"></div>
+            <div id="terminal-input-line">
+                <span class="prompt"><span class="user">samipregmi@time101</span>:<span class="dir">~</span>$</span>
+                <input type="text" name="command" id="command" autocomplete="off" spellcheck="false" autofocus>
+            </div>
+        </div>
     </div>
     <div id="right-div">
         <canvas id="right-canvas" style="border: 2px solid #00ffcc;"></canvas>
     </div>
-    
-<div class="modal fade" id="licenseModal" tabindex="-1" aria-labelledby="licenseModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="licenseModalLabel">MIT License</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <pre id="license-content"></pre>
-      </div>
-    </div>
-  </div>
-</div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -40,4 +33,5 @@
 <script src="./js/left.js"></script>
 <script src="./js/right.js"></script>
 <script src="./js/top.js"></script>
+
 </html>
