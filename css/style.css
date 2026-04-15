@@ -2,7 +2,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     padding: 0 20px;
     background-color: #0d0d0d;
@@ -25,7 +25,20 @@ body {
     min-width: 300px;
 }
 
+#bottom-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
 #top-canvas {
+    margin-bottom: 20px;
+    max-width: 100%;
+}
+
+#bottom-canvas {
     margin-bottom: 20px;
     max-width: 100%;
 }
@@ -114,6 +127,19 @@ canvas {
     #left-div,
     #center-div,
     #right-div {
+        flex: 1 1 100%;
+        min-width: 100%;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    #left-canvas,
+    #right-canvas {
+        width: 100%;
+        display: block;
+    }
+
+    #bottom-div {
         flex: 1 1 100%;
         min-width: 100%;
         width: 100%;
