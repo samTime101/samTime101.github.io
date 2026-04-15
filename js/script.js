@@ -1,3 +1,4 @@
+
 let terminalOutput = document.querySelector('#terminal-output');
 let commandInput = document.querySelector('#command');
 let terminalContainer = document.querySelector('#terminal-container');
@@ -114,12 +115,7 @@ function cdCommand(dir) {
 
 function neofetchCommand() {
     printOutput(`
-███████  █████  ███    ███ ██ ██████  
-██      ██   ██ ████  ████ ██ ██   ██ 
-███████ ███████ ██ ████ ██ ██ ██████  
-     ██ ██   ██ ██  ██  ██ ██ ██      
-███████ ██   ██ ██      ██ ██ ██      
-
+${ascii}
 System uptime: 19 Years
 OS: Time101 LTS
 Shell: Time101 shell
