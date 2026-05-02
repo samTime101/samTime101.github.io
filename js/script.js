@@ -65,6 +65,8 @@ function processCommand(input) {
     else if (cmd === 'ls') lsCommand();
     else if (cmd === 'cd') cdCommand(arg1);
     else if (cmd === 'neofetch') neofetchCommand();
+    else if (cmd === 'life' || cmd === 'me') lifeCommand();
+    else if (cmd === 'clicks') clicksCommand();
     else if (cmd === 'email') {
         if (currentDir === '~/contacts') emailCommand();
         else printOutput(`${cmd}: command not found`);

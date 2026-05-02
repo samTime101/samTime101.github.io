@@ -1,0 +1,133 @@
+:root {
+    --bg-color: #0a0a0a;
+    --text-color: #d1d1d1;
+    --accent-color: #ff3e3e;
+    --glitch-color-1: #00f2ff;
+    --glitch-color-2: #ff00ff;
+    --dim-text: #666666;
+    --font-main: 'Special Elite', cursive;
+    --font-mono: 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.4;
+    margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Background Effects */
+.noise {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/7/70/Grainy_gradient.svg');
+    opacity: 0.05; pointer-events: none; z-index: 1000;
+}
+
+.scanlines {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px; pointer-events: none; z-index: 1001;
+}
+
+.container { max-width: 800px; margin: 0 auto; position: relative; z-index: 10; }
+
+/* Typography */
+h1, h2, h3, h4 { text-transform: uppercase; letter-spacing: 2px; }
+h1 { font-size: clamp(2rem, 8vw, 3.5rem); margin: 0; color: var(--accent-color); }
+.hero-subtitle { font-family: var(--font-mono); color: var(--dim-text); font-size: 0.9rem; margin-top: 10px; }
+
+/* Glitch Effect */
+.glitch { position: relative; display: inline-block; }
+.glitch::before, .glitch::after {
+    content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+}
+.glitch::before {
+    left: 2px; text-shadow: -2px 0 var(--glitch-color-1);
+    clip: rect(44px, 450px, 56px, 0); animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+.glitch::after {
+    left: -2px; text-shadow: -2px 0 var(--glitch-color-2);
+    clip: rect(44px, 450px, 56px, 0); animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(31px, 9999px, 94px, 0); }
+    100% { clip: rect(84px, 9999px, 100px, 0); }
+}
+@keyframes glitch-anim2 {
+    0% { clip: rect(65px, 9999px, 100px, 0); }
+    100% { clip: rect(67px, 9999px, 53px, 0); }
+}
+
+/* Navigation */
+.glitch-nav { margin-bottom: 40px; }
+.glitch-nav a { color: var(--accent-color); text-decoration: none; font-size: 1.2rem; position: relative; }
+.glitch-nav a:hover { color: var(--text-color); text-shadow: 0 0 10px var(--accent-color); }
+
+/* Directory Hub */
+.directory-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 60px;
+}
+.dir-item {
+    border: 1px solid var(--dim-text); padding: 30px; text-decoration: none;
+    color: var(--text-color); transition: all 0.3s; position: relative; overflow: hidden;
+}
+.dir-item:hover {
+    border-color: var(--accent-color); background: rgba(255, 62, 62, 0.05);
+    transform: translateY(-5px);
+}
+.dir-num {
+    position: absolute; top: 10px; right: 10px; font-family: var(--font-mono);
+    font-size: 0.8rem; color: var(--dim-text);
+}
+.dir-item .glitch { font-size: 1.5rem; margin-bottom: 10px; display: block; }
+.dir-desc { font-size: 0.9rem; color: var(--dim-text); display: block; font-family: var(--font-mono); }
+
+/* Sections */
+.chaos-section { margin-bottom: 80px; padding: 20px; }
+h2 { font-size: 1.5rem; color: var(--accent-color); border-bottom: 2px solid var(--accent-color); display: inline-block; margin-bottom: 30px; }
+h3 { font-family: var(--font-mono); font-size: 1rem; color: var(--dim-text); margin-bottom: 15px; }
+
+/* Grid for Responsiveness */
+.chaos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+.work-item { margin-bottom: 30px; border-left: 3px solid var(--dim-text); padding-left: 15px; }
+.story-item { border-left-color: var(--accent-color); border-bottom: 1px solid rgba(255, 62, 62, 0.1); padding-bottom: 30px; }
+.work-item h4 { margin: 0 0 10px 0; font-size: 1.1rem; }
+.work-item p { color: var(--text-color); white-space: pre-wrap; font-size: 0.95rem; }
+
+/* Drawing & Gallery Grid */
+.drawing-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;
+}
+.chaos-img {
+    width: 100%; height: auto; border: 1px solid var(--dim-text);
+    filter: grayscale(0.8) contrast(1.5) brightness(0.8);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: crosshair; display: block;
+}
+.chaos-img:hover {
+    filter: grayscale(0) contrast(1) brightness(1); transform: scale(1.1) rotate(0deg) !important;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px var(--accent-color), 5px 5px var(--glitch-color-1), -5px -5px var(--glitch-color-2);
+    z-index: 100;
+}
+
+/* Lists */
+ul { list-style: none; padding: 0; }
+li { margin-bottom: 15px; font-family: var(--font-mono); position: relative; padding-left: 20px; }
+li::before { content: '>'; position: absolute; left: 0; color: var(--accent-color); }
+
+/* Footer */
+footer { margin-top: 100px; padding: 40px 0; border-top: 1px solid var(--dim-text); text-align: center; color: var(--dim-text); font-size: 0.8rem; }
+
+@media (max-width: 600px) {
+    .directory-grid { grid-template-columns: 1fr; }
+    .chaos-grid, .drawing-grid { grid-template-columns: 1fr; }
+}
