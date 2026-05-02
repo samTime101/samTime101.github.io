@@ -15,8 +15,8 @@ const wordObjects = [
 
 function animateTop() {
     topCtx.clearRect(0, 0, topCanvas.width, topCanvas.height);
-    topCtx.fillStyle = '#00ffcc';
-    topCtx.font = '30px monospace';
+    topCtx.fillStyle = '#ff3e3e';
+    topCtx.font = '30px Special Elite';
     topCtx.textAlign = 'center';
     
     for (let word of wordObjects) {

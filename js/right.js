@@ -9,7 +9,8 @@ class Box {
         this.height = height;
         this.dx = dx;
         this.dy = dy;
-        this.color = color || `rgb(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)})`;
+        const colors = ["#ff3e3e", "#00f2ff", "#ff00ff"];
+        this.color = color || colors[Math.floor(Math.random() * colors.length)];
     }
 
     update(canvas) {

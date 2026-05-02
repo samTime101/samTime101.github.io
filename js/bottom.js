@@ -11,8 +11,8 @@ const footerWordObjects = [
 function animateBottom() {
     bottomCtx.clearRect(0, 0, bottomCanvas.width, bottomCanvas.height);
 
-    bottomCtx.fillStyle = '#00ffcc';
-    bottomCtx.font = '30px monospace';
+    bottomCtx.fillStyle = '#ff3e3e';
+    bottomCtx.font = '30px Special Elite';
     bottomCtx.textAlign = 'center';
 
 

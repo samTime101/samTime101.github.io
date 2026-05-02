@@ -84,3 +84,15 @@ function processCommand(input) {
 
 updateInputPrompt();
 commandInput.focus();
+
+// Random chaos effect for terminal
+setInterval(() => {
+    const elements = document.querySelectorAll('.cmd-text, .prompt, #terminal-output div');
+    const randomEl = elements[Math.floor(Math.random() * elements.length)];
+    if (randomEl) {
+        randomEl.style.textShadow = `1px 1px ${Math.random() > 0.5 ? '#00f2ff' : '#ff00ff'}`;
+        setTimeout(() => {
+            randomEl.style.textShadow = 'none';
+        }, 100);
+    }
+}, 3000);
