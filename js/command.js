@@ -14,6 +14,7 @@ whoami
 cd                                                 
 ls
 neofetch
+me
 `);
 }
 
@@ -26,7 +27,7 @@ I love computers...
 }
 function lsCommand() {
     if (currentDir === '~') {
-        printOutput(`<span style="color:#729fcf;font-weight:bold;">projects</span>  <span style="color:#729fcf;font-weight:bold;">contacts</span>  <span style="color:#729fcf;font-weight:bold;">about</span>  <span style="color:#729fcf;font-weight:bold;">articles</span>`);
+        printOutput(`<span style="color:#729fcf;font-weight:bold;">projects</span>  <span style="color:#729fcf;font-weight:bold;">contacts</span>  <span style="color:#729fcf;font-weight:bold;">about</span>  <span style="color:#729fcf;font-weight:bold;">articles</span>  <span style="color:#729fcf;font-weight:bold;">life</span>`);
     } else if (currentDir === '~/contacts') {
         printOutput(`<span style="color:#8ae234;font-weight:bold;">email</span>  <span style="color:#8ae234;font-weight:bold;">linkedin</span>  <span style="color:#8ae234;font-weight:bold;">github</span>`);
     }
@@ -51,8 +52,8 @@ function cdCommand(dir) {
             currentDir = parts.join('/') || '~';
         }
     } else if (currentDir === '~') {
-        if (dir === 'contacts' || dir === 'projects' || dir === 'about' || dir === 'articles') {
-            currentDir = `~/${dir === 'about' ? 'about' : dir}`;
+        if (dir === 'contacts' || dir === 'projects' || dir === 'about' || dir === 'articles' || dir === 'life') {
+            currentDir = `~/${dir}`;
         } else {
             printOutput(`time101: cd: ${dir}: No such file or directory`);
         }
@@ -95,6 +96,14 @@ function linkedinCommand() {
 
 function githubCommand() {
     openLink(`Opening github...`, "https://github.com/samTime101", true);
+}
+
+function lifeCommand() {
+    openLink("Accessing life archive...", "me.html");
+}
+
+function clicksCommand() {
+    openLink("Accessing photography archive...", "gallery.html#clicks");
 }
 
 function articleCommand() {

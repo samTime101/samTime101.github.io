@@ -12,11 +12,10 @@ const wordObjects = [
     { text: "SAMIP",   x: 550, y: 50, dy: 2.5, direction: 1 }
 ];
 
-
 function animateTop() {
     topCtx.clearRect(0, 0, topCanvas.width, topCanvas.height);
-    topCtx.fillStyle = '#00ffcc';
-    topCtx.font = '30px monospace';
+    topCtx.fillStyle = '#ff3e3e';
+    topCtx.font = '30px Special Elite';
     topCtx.textAlign = 'center';
     
     for (let word of wordObjects) {

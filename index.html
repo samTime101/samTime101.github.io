@@ -4,135 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samip Regmi</title>
-    <meta name="description" content="Samip Regmi, also known as samtime101 and time101, is a passionate developer who loves computers.">
-    <meta name="keywords" content="Samip Regmi, samtime101, time101, developer Nepal, loves computers, JavaScript developer, portfolio">
-    <meta name="author" content="Samip Regmi">
-    <meta property="og:title" content="Samip Regmi | samtime101 | Developer">
-    <meta property="og:description" content="Developer who loves computers and builds interactive terminal-style web experiences.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://samtime101.github.io/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Samip Regmi (samtime101)">
-    <meta name="twitter:description" content="Developer who loves computers and creative coding.">
-    <link rel="canonical" href="http://samtime101.github.io/">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Samip Regmi",
-      "alternateName": ["samtime101", "time101"],
-      "description": "Developer who loves computers and builds interactive web experiences.",
-      "url": "http://samtime101.github.io/",
-      "sameAs": [
-        "https://github.com/samtime101",
-        "https://linkedin.com/in/samip-regmi-670a76248"
-      ]
-    }
-    </script>
+    <title>Samip Regmi | [CORE_TERMINAL]</title>
+    <link rel="stylesheet" href="./css/me.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 </head>
 
-<body data-bs-theme="dark">
-    <header class="visually-hidden">
-        <h1>Samip Regmi (samtime101 / time101)</h1>
-    </header>
-    <main class="visually-hidden">
-        <section>
-            <h2>About Samip Regmi</h2>
-            <p>
-                Samip Regmi, also known as samtime101 and time101, is a developer from Nepal
-                who loves computers
-            </p>
-        </section>
-        <section>
-            <h2>Identity</h2>
-            <p>
-                If you are searching for samtime101, time101, or Samip Regmi,
-                this is the official website and portfolio.
-            </p>
-        </section>
-        <section>
-            <h2>Skills</h2>
-            <p>
-                Frontend development, backend development, databases, AI/ML
-            </p>
-        </section>
-    </main>
-    <div id="left-div">
-        <canvas id="left-canvas" style="border: 2px solid #00ffcc;"></canvas>
-    </div>
-    <div id="center-div">
-        <canvas id="top-canvas" style="border:2px solid #00ffcc;"></canvas>
-        <div id="terminal-container">
-            <div id="terminal-output"></div>
-            <div id="terminal-input-line">
-                <span class="prompt">
-                    <span class="user">samipregmi@time101</span>:<span class="dir">~</span>$
-                </span>
-                <input type="text" id="command" name="command" aria-label="Terminal command input" autocomplete="off"
-                    spellcheck="false" autofocus>
-            </div>
-        </div>
-        <div id="bottom-div">
-            <canvas id="bottom-canvas" style="border: 2px solid #00ffcc;"></canvas>
-        </div>
-    </div>
-    <div id="right-div">
-        <canvas id="right-canvas" style="border: 2px solid #00ffcc;"></canvas>
-    </div>
+<body>
+    <div class="noise"></div>
+    <div class="scanlines"></div>
+    <div class="crt-overlay"></div>
 
-    <div class="modal fade" id="articleModal" tabindex="-1" aria-labelledby="articleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content bg-dark text-light border border-info">
-                <div class="modal-header border-info">
-                    <h5 class="modal-title" id="articleModalLabel">Articles which i have written</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="list-group">
-                        <a href="https://www.linkedin.com/pulse/1-mathematics-bagchal-validating-normal-moves-samip-regmi-ih3gc" target="_blank" rel="noopener noreferrer"
-                            class="list-group-item list-group-item-action bg-dark text-light border-info">
-                            #1 Mathematics of Bagchal: Validating Normal Moves
-                        </a>                        
-                        <a href="https://www.linkedin.com/pulse/how-more-observations-stabilize-randomness-samip-regmi-iz96c?trackingId=uCKtNyS7RoKSUurqcit6pg%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3Bt93ufbruTG%2B%2B%2F0S11ri0EA%3D%3D" target="_blank" rel="noopener noreferrer"
-                            class="list-group-item list-group-item-action bg-dark text-light border-info">
-                            How more observations stabilize randomness
-                        </a>
-                        <a href="https://www.linkedin.com/pulse/two-sum-problem-how-use-table-simplifies-samip-regmi-fjqkc?trackingId=uCKtNyS7RoKSUurqcit6pg%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3Bt93ufbruTG%2B%2B%2F0S11ri0EA%3D%3D" target="_blank" rel="noopener noreferrer"
-                            class="list-group-item list-group-item-action bg-dark text-light border-info">
-                            Two Sum Problem and How use of table simplifies it
-                        </a>
-                        <a href="https://www.linkedin.com/pulse/3-computational-introduction-linear-regression-model-importance-0oj1c?trackingId=uCKtNyS7RoKSUurqcit6pg%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3Bt93ufbruTG%2B%2B%2F0S11ri0EA%3D%3D" target="_blank" rel="noopener noreferrer"
-                            class="list-group-item list-group-item-action bg-dark text-light border-info">
-                            #3 Computational Introduction of Linear Regression Model and...
-                        </a>
-                        <a href="https://www.linkedin.com/pulse/2-short-introduction-linear-regression-part-1-samip-regmi-evwbc?trackingId=uCKtNyS7RoKSUurqcit6pg%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3Bt93ufbruTG%2B%2B%2F0S11ri0EA%3D%3D" target="_blank" rel="noopener noreferrer"
-                            class="list-group-item list-group-item-action bg-dark text-light border-info">
-                            #2 Short Introduction to Linear Regression: Part 1
-                        </a>
-                        <a href="https://www.linkedin.com/pulse/short-computational-introduction-knn-samip-regmi-c4buc?trackingId=uCKtNyS7RoKSUurqcit6pg%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3Bt93ufbruTG%2B%2B%2F0S11ri0EA%3D%3D" target="_blank" rel="noopener noreferrer"
-                            class="list-group-item list-group-item-action bg-dark text-light border-info">
-                            Short computational Introduction to kNN
-                        </a>
-                    </div>
-                </div>
-                <div class="modal-footer border-info">
-                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
+    <div id="ascii-background"></div>
+    <div id="data-stream"></div>
+
+    <div id="mini-terminal"></div>
+
+    <div id="chaos-fragments"></div>
+
+    <div class="container dashboard-container">
+        <header class="glitch-header">
+            <h1 class="glitch-complex" data-text="TIME101_CORE">
+                <span>TIME101_CORE</span>
+                <span>TIME101_CORE</span>
+                <span>TIME101_CORE</span>
+            </h1>
+            <p class="hero-subtitle">Unauthorized access detected. Fragmenting system data...</p>
+        </header>
+
+        <div class="portal-container">
+            <button id="archives-btn" class="portal-btn glitch" data-text="ENTER_ARCHIVES">
+                ENTER_ARCHIVES
+            </button>
+            <p class="portal-hint">Access restricted memory fragments.</p>
         </div>
+
+        <div id="portal-overlay"></div>
+
+        <footer>
+            <span class="glitch" data-text="[STATION_ID: TIME101]">[STATION_ID: TIME101]</span>
+        </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="./js/script.js" defer></script>
-    <script src="./js/left.js" defer></script>
-    <script src="./js/right.js" defer></script>
-    <script src="./js/top.js" defer></script>
-    <script src="./js/bottom.js" defer></script>
     <script src="./js/ascii.js" defer></script>
-    <script src="./js/command.js" defer></script>
+    <script src="./js/script.js" defer></script>
 </body>
+
 </html>
