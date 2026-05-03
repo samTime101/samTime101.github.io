@@ -34,11 +34,172 @@ document.addEventListener('DOMContentLoaded', () => {
         renderGallery();
     } else if (page === 'stories') {
         renderStories();
+    } else if (page === 'cv') {
+        renderCV();
+    } else if (page === 'articles') {
+        renderArticles();
+    }
+
+    function renderArticles() {
+        const container = document.querySelector('.container');
+        if (!container) return;
+        
+        showLoading('articles-loader', 'Scanning data fragments...');
+        
+        fetch('../contents/articles.md')
+            .then(response => response.text())
+            .then(text => {
+                const loader = document.getElementById('articles-loader');
+                if (loader) loader.style.display = 'none';
+
+                // Remove any existing dynamic sections to avoid duplicates
+                container.querySelectorAll('.chaos-section.dynamic').forEach(s => s.remove());
+
+                // Split by section headers (## )
+                const sections = text.split(/^##\s+/gm);
+                sections.shift(); // Remove title
+
+                sections.forEach(section => {
+                    const lines = section.split('\n');
+                    const title = lines[0].trim();
+                    const content = lines.slice(1).join('\n').trim();
+                    
+                    if (!title) return;
+
+                    const chaosSection = document.createElement('section');
+                    chaosSection.className = 'chaos-section dynamic';
+                    
+                    const h2 = document.createElement('h2');
+                    h2.className = 'glitch';
+                    const id = title.toUpperCase().replace(/\s+/g, '_');
+                    h2.setAttribute('data-text', id);
+                    h2.innerText = id;
+                    chaosSection.appendChild(h2);
+
+                    const workItem = document.createElement('div');
+                    workItem.className = title === 'SYSTEM_LOG' ? 'work-item story-item' : 'work-item';
+                    
+                    // Unified Markdown Parsing
+                    let html = content
+                        .replace(/^---\s*$/gm, '<hr class="schizo-hr">')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color: var(--accent-color)">$1</a>')
+                        .replace(/^###\s+(.*)/gm, '<h3>$1</h3>')
+                        .replace(/^\*\s+(.*)/gm, '<li>$1</li>')
+                        .replace(/\n/g, '<br>');
+                    
+                    // Wrap consecutive <li> tags in <ul>
+                    html = html.replace(/(<li>.*<\/li>)+/g, match => `<ul>${match}</ul>`);
+                    // Clean up double br after tags
+                    html = html.replace(/<\/ul><br>/g, '</ul>').replace(/<\/h3><br>/g, '</h3>').replace(/<hr class="schizo-hr"><br>/g, '<hr class="schizo-hr">');
+                    
+                    workItem.innerHTML = html;
+                    chaosSection.appendChild(workItem);
+                    container.insertBefore(chaosSection, container.querySelector('footer'));
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                showLoading('articles-loader', 'Data stream corrupted.');
+            });
+    }
+
+    function renderCV() {
+        const container = document.querySelector('.cv-layout');
+        if (!container) return;
+        
+        showLoading('cv-loader', 'Extracting personnel intel...');
+        
+        fetch('../contents/cv.md')
+            .then(response => response.text())
+            .then(text => {
+                const loader = document.getElementById('cv-loader');
+                if (loader) loader.style.display = 'none';
+                
+                container.innerHTML = '';
+                
+                // Split by section headers (## )
+                const sections = text.split(/^##\s+/gm);
+                sections.shift(); // Remove title
+                
+                sections.forEach(section => {
+                    const lines = section.split('\n');
+                    const title = lines[0].trim();
+                    const rawContent = lines.slice(1).join('\n').trim();
+                    
+                    if (!title) return;
+
+                    const block = document.createElement('section');
+                    block.className = 'cv-block';
+                    
+                    const h2 = document.createElement('h2');
+                    h2.className = 'glitch';
+                    const id = title.toUpperCase().replace(/\s+/g, '_');
+                    h2.setAttribute('data-text', id);
+                    h2.innerText = id;
+                    block.appendChild(h2);
+                    
+                    const workItem = document.createElement('div');
+                    workItem.className = 'work-item';
+                    
+                    // Precise Line-by-Line Parsing
+                    const contentLines = rawContent.split('\n');
+                    let html = '';
+                    let inList = false;
+                    
+                    contentLines.forEach(line => {
+                        const trimmed = line.trim();
+                        
+                        // Handle Subheaders (###)
+                        if (trimmed.startsWith('###')) {
+                            if (inList) { html += '</ul>'; inList = false; }
+                            html += `<h4>${trimmed.replace(/^###\s+/, '')}</h4>`;
+                        }
+                        // Handle List Items (*)
+                        else if (trimmed.startsWith('*')) {
+                            if (!inList) { html += '<ul>'; inList = true; }
+                            html += `<li>${parseMarkdownInline(trimmed.replace(/^\*\s+/, ''))}</li>`;
+                        }
+                        // Handle Horizontal Rules (---)
+                        else if (trimmed === '---') {
+                            if (inList) { html += '</ul>'; inList = false; }
+                            html += '<hr class="schizo-hr">';
+                        }
+                        // Handle Regular Lines / Paragraphs
+                        else if (trimmed !== '') {
+                            if (inList) { html += '</ul>'; inList = false; }
+                            html += `<p>${parseMarkdownInline(trimmed)}</p>`;
+                        }
+                        // Handle line breaks (empty lines)
+                        else if (inList) {
+                            html += '</ul>';
+                            inList = false;
+                        }
+                    });
+                    
+                    if (inList) html += '</ul>';
+
+                    workItem.innerHTML = html;
+                    block.appendChild(workItem);
+                    container.appendChild(block);
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                showLoading('cv-loader', 'Personnel record corrupted.');
+            });
+    }
+
+    // Helper for bold and links
+    function parseMarkdownInline(text) {
+        return text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
     }
 
     function renderMovies() {
         showLoading('movie-list-container', 'Retrieving fragments...');
-        fetch('movies.md')
+        fetch('../contents/movies.md')
             .then(response => response.text())
             .then(text => {
                 const container = document.getElementById('movie-list-container');
@@ -65,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderPoems() {
-        fetch('poems.md')
+        fetch('../contents/poems.md')
             .then(response => response.text())
             .then(text => {
                 const lines = text.split('\n');
@@ -115,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderGallery() {
         // Drawings
-        fetch('drawings.md')
+        fetch('../contents/drawings.md')
             .then(response => response.text())
             .then(text => {
                 const container = document.getElementById('drawing-list');
@@ -129,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
         // Clicks
-        fetch('clicks.md')
+        fetch('../contents/clicks.md')
             .then(response => response.text())
             .then(text => {
                 const container = document.getElementById('click-list');
@@ -159,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         showLoading('story-list-container', 'Connecting to narrative stream...');
         
-        fetch('stories.md')
+        fetch('../contents/stories.md')
             .then(response => response.text())
             .then(text => {
                 container.innerHTML = '';

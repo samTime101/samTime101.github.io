@@ -40,8 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
             archivesBtn.textContent = 'REDIRECTING...';
             
             setTimeout(() => {
-                window.location.href = 'me.html';
+                window.location.href = 'pages/me.html';
             }, 1000);
+
         });
     }
 });
