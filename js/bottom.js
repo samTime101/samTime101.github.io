@@ -15,7 +15,6 @@ function animateBottom() {
     bottomCtx.font = '30px Special Elite';
     bottomCtx.textAlign = 'center';
 
-
     for (let word of footerWordObjects) {
 
         if (word.isDate) {

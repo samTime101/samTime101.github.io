@@ -1,30 +1,5 @@
 # Movies I Have Watched
 
-## Indian
-- Barfi
-- Dhoom 2
-- Dhoom 3
-- Phir Hera Pheri
-- Hera Pheri
-- Munna Bhai MBBS
-- Lage Raho Munna Bhai
-- Lunchbox
-- Stanley Ka Dabba
-- Rockstar
-- 3 Idiots
-- Bahubali 1
-- Bahubali 2
-- Dhurandhar 2
-- PK
-- Lagaan
-- Kuch Kuch Hota Hai
-
-## Nepali
-- Purna Bahadur Ko Sarangi
-- Chakka Panja 1
-- Kohinoor
-- 14 Peaks: Nothing is Impossible
-
 ## English
 - Shrek 1
 - Shrek 2
@@ -70,6 +45,31 @@
 - Cars 1
 - Cars 2
 - The Lion King
+
+## Nepali
+- Purna Bahadur Ko Sarangi
+- Chakka Panja 1
+- Kohinoor
+- 14 Peaks: Nothing is Impossible
+
+## Indian
+- Barfi
+- Dhoom 2
+- Dhoom 3
+- Phir Hera Pheri
+- Hera Pheri
+- Munna Bhai MBBS
+- Lage Raho Munna Bhai
+- Lunchbox
+- Stanley Ka Dabba
+- Rockstar
+- 3 Idiots
+- Bahubali 1
+- Bahubali 2
+- Dhurandhar 2
+- PK
+- Lagaan
+- Kuch Kuch Hota Hai
 
 ## Anime
 - The Death Note: remaining last 10 episodes

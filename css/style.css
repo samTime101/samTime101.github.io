@@ -23,7 +23,6 @@ body {
     min-height: 100vh;
 }
 
-/* Background Effects */
 .noise {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: url('https://upload.wikimedia.org/wikipedia/commons/7/70/Grainy_gradient.svg');
@@ -44,7 +43,6 @@ body {
     z-index: 10;
 }
 
-/* Header Styling (Identical to me.html) */
 .glitch-header {
     text-align: center;
     margin-bottom: 60px;
@@ -65,7 +63,6 @@ h1 {
     margin-top: 10px;
 }
 
-/* Glitch Effect (Identical to me.html) */
 .glitch { position: relative; display: inline-block; }
 .glitch::before, .glitch::after {
     content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -88,7 +85,6 @@ h1 {
     100% { clip: rect(67px, 9999px, 53px, 0); }
 }
 
-/* Terminal Grid */
 .terminal-grid {
     display: grid;
     grid-template-columns: minmax(200px, 250px) 1fr minmax(200px, 250px);
@@ -120,7 +116,6 @@ canvas {
     gap: 20px;
 }
 
-/* Terminal Container (Upgraded) */
 #terminal-container {
     width: 100%;
     height: 450px;
@@ -170,7 +165,6 @@ canvas {
     outline: none;
 }
 
-/* Footer (Identical to me.html) */
 footer {
     margin-top: 100px;
     padding: 40px 0;
@@ -180,7 +174,6 @@ footer {
     font-size: 0.8rem;
 }
 
-/* Responsive: Large tablets and smaller laptops */
 @media (max-width: 1024px) {
     .main-layout {
         padding: 30px 20px;
@@ -206,7 +199,6 @@ footer {
     }
 }
 
-/* Responsive: Tablets */
 @media (max-width: 768px) {
     .main-layout {
         padding: 25px 15px;
@@ -239,7 +231,6 @@ footer {
     }
 }
 
-/* Responsive: Mobile devices */
 @media (max-width: 500px) {
     .main-layout {
         padding: 15px 10px;

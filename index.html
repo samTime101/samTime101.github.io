@@ -12,46 +12,41 @@
 <body>
     <div class="noise"></div>
     <div class="scanlines"></div>
+    <div class="crt-overlay"></div>
+    
+    <div id="ascii-background"></div>
+    <div id="data-stream"></div>
+    
+    <div id="laser-scan"></div>
+    <div id="mini-terminal"></div>
+    
+    <div class="warning-tape top"><span>CAUTION: SYSTEM_FRAGMENTATION_IN_PROGRESS // </span><span>CAUTION: SYSTEM_FRAGMENTATION_IN_PROGRESS // </span></div>
+    <div class="warning-tape bottom"><span>STAY_IN_THE_LIGHT // HE_IS_WATCHING // </span><span>STAY_IN_THE_LIGHT // HE_IS_WATCHING // </span></div>
+
+    <div id="chaos-fragments"></div>
 
     <div class="container dashboard-container">
         <header class="glitch-header">
-            <h1 class="glitch" data-text="TIME101_CORE">TIME101_CORE</h1>
+            <h1 class="glitch-complex" data-text="TIME101_CORE">
+                <span>TIME101_CORE</span>
+                <span>TIME101_CORE</span>
+                <span>TIME101_CORE</span>
+            </h1>
             <p class="hero-subtitle">Unauthorized access detected. Fragmenting system data...</p>
         </header>
 
         <div class="life-progress-container">
             <div class="life-label">
-                <span class="label-text">LIFE_PROGRESS:</span>
+                <span class="label-text">HEARTBEAT_DECAY:</span>
                 <span id="life-percentage">00.000000000%</span>
             </div>
-            <div class="progress-bar-bg">
-                <div id="life-bar" class="progress-bar-fill"></div>
+            <div class="schizo-monitor">
+                <div id="life-pulse" class="pulse-line"></div>
+                <div id="decay-bits" class="decay-overlay"></div>
             </div>
             <div class="life-stats">
-                <span id="life-age">AGE: 19.XXXX</span>
-                <span id="life-status">STATUS: OPERATIONAL</span>
-            </div>
-        </div>
-
-        <div class="schizo-grid">
-            <div class="grid-item status-box">
-                <h3 class="box-title">SYSTEM_STATS</h3>
-                <div class="stat-line"><span class="label">CORE:</span> <span class="val">ACTIVE</span></div>
-                <div class="stat-line"><span class="label">MEMORY:</span> <span class="val">FRAGMENTED</span></div>
-                <div class="stat-line"><span class="label">LATENCY:</span> <span class="val flicker">0.001ms</span></div>
-            </div>
-            
-            <div class="grid-item info-box">
-                <h3 class="box-title">USER_INTEL</h3>
-                <p class="box-text">Origin: 2006.09.01</p>
-                <p class="box-text">Identity: Samip Regmi</p>
-                <p class="box-text">Permission: Root_User</p>
-            </div>
-
-            <div class="grid-item alert-box">
-                <h3 class="box-title">ALERTS</h3>
-                <div class="alert-line"># ACCESS_LOGS_DELETED</div>
-                <div class="alert-line"># MEMORY_LEAK_DETECTED</div>
+                <span id="life-age">TEMPORAL_LOC: 19.XXXX</span>
+                <span id="life-status" class="flicker">STATUS: DEGRADING</span>
             </div>
         </div>
 
@@ -70,8 +65,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="./js/script.js" defer></script>
     <script src="./js/ascii.js" defer></script>
+    <script src="./js/script.js" defer></script>
 </body>
 
 </html>

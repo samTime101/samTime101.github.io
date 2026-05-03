@@ -67,7 +67,7 @@
 ### Bato — AI-Powered Route Optimization
 * Live route analysis and recommendation app using AI pathfinding algorithms and WebSockets.
 
-### Image ↔ Sound Mapper (SSTV Principle)
+### Image Sound Mapper (SSTV Principle)
 * Application converting images to audio and audio back to images using Slow-Scan Television (SSTV) encoding.
 
 ### Goal Feeder — Q-Learning Pathfinding Agent

@@ -12,7 +12,6 @@ const wordObjects = [
     { text: "SAMIP",   x: 550, y: 50, dy: 2.5, direction: 1 }
 ];
 
-
 function animateTop() {
     topCtx.clearRect(0, 0, topCanvas.width, topCanvas.height);
     topCtx.fillStyle = '#ff3e3e';

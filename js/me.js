@@ -2,14 +2,79 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const page = body.getAttribute('data-page');
 
-    // Helper to render fragments/loading state
     function showLoading(id, message) {
         const el = document.getElementById(id);
         if (el) el.innerHTML = `<p>${message}</p>`;
     }
 
-    // Shared Chaos Effect
     function initChaos() {
+        const asciiBg = document.getElementById('ascii-background');
+        if (asciiBg && typeof ascii !== 'undefined') {
+            for (let i = 0; i < 15; i++) {
+                const div = document.createElement('div');
+                div.className = 'ascii-item';
+                div.textContent = ascii;
+                div.style.left = `${Math.random() * 100}%`;
+                div.style.top = `${Math.random() * 100}%`;
+                div.style.animationDelay = `${Math.random() * -60}s`;
+                div.style.fontSize = '8px';
+                div.style.opacity = '0.02';
+                asciiBg.appendChild(div);
+            }
+        }
+
+        const dataStream = document.getElementById('data-stream');
+        const fragments = [
+            "RE_SYNCHRONIZING...", "NULL_POINTER_EXCEPTION", "VOID_DATA_LINK", 
+            "FRAGMENT_ID: 0x8823", "MEMORY_LEAK_WARNING", "SHADOW_PROC_ACTIVE",
+            "SYSTEM_COMPROMISED", "HE_WATCHES", "ACCESS_DENIED"
+        ];
+
+        function spawnFragment() {
+            if (!dataStream) return;
+            const fragment = document.createElement('div');
+            fragment.className = 'data-fragment';
+            fragment.textContent = fragments[Math.floor(Math.random() * fragments.length)];
+            fragment.style.left = `${Math.random() * 100}vw`;
+            fragment.style.animationDuration = `${8 + Math.random() * 12}s`;
+            fragment.style.opacity = '0.2';
+            dataStream.appendChild(fragment);
+            setTimeout(() => fragment.remove(), 20000);
+        }
+        if (dataStream) setInterval(spawnFragment, 3000);
+
+        function triggerGlitch() {
+            const glitchType = Math.floor(Math.random() * 3);
+            if (glitchType === 0) {
+                body.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+                setTimeout(() => body.style.transform = '', 100);
+            } else if (glitchType === 1) {
+                body.style.filter = 'invert(0.1) contrast(1.1)';
+                setTimeout(() => body.style.filter = '', 50);
+            }
+        }
+        setInterval(() => {
+            if (Math.random() > 0.98) triggerGlitch();
+        }, 1000);
+
+        const glitchChars = "¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿";
+        function corruptText() {
+            const elements = document.querySelectorAll('p, span, h2, h3, h4, li');
+            const target = elements[Math.floor(Math.random() * elements.length)];
+            if (!target || target.children.length > 0 || target.textContent.length < 5) return;
+
+            const originalText = target.textContent;
+            const textArray = originalText.split('');
+            const glitchIndex = Math.floor(Math.random() * textArray.length);
+            textArray[glitchIndex] = glitchChars[Math.floor(Math.random() * glitchChars.length)];
+            
+            target.textContent = textArray.join('');
+            setTimeout(() => target.textContent = originalText, 150);
+        }
+        setInterval(() => {
+            if (Math.random() > 0.8) corruptText();
+        }, 2000);
+
         setInterval(() => {
             const elements = document.querySelectorAll('h2, h3, h4, li, p, .chaos-img, .glitch');
             const randomEl = elements[Math.floor(Math.random() * elements.length)];
@@ -25,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     }
 
-    // Page Specific Logic
     if (page === 'movies') {
         renderMovies();
     } else if (page === 'poems') {
@@ -52,49 +116,78 @@ document.addEventListener('DOMContentLoaded', () => {
                 const loader = document.getElementById('articles-loader');
                 if (loader) loader.style.display = 'none';
 
-                // Remove any existing dynamic sections to avoid duplicates
                 container.querySelectorAll('.chaos-section.dynamic').forEach(s => s.remove());
 
-                // Split by section headers (## )
                 const sections = text.split(/^##\s+/gm);
-                sections.shift(); // Remove title
+                sections.shift(); 
 
                 sections.forEach(section => {
                     const lines = section.split('\n');
-                    const title = lines[0].trim();
-                    const content = lines.slice(1).join('\n').trim();
+                    const sectionTitle = lines[0].trim();
+                    const sectionContent = lines.slice(1).join('\n').trim();
                     
-                    if (!title) return;
+                    if (!sectionTitle) return;
 
                     const chaosSection = document.createElement('section');
                     chaosSection.className = 'chaos-section dynamic';
                     
                     const h2 = document.createElement('h2');
                     h2.className = 'glitch';
-                    const id = title.toUpperCase().replace(/\s+/g, '_');
+                    const id = sectionTitle.toUpperCase().replace(/\s+/g, '_');
                     h2.setAttribute('data-text', id);
                     h2.innerText = id;
                     chaosSection.appendChild(h2);
 
-                    const workItem = document.createElement('div');
-                    workItem.className = title === 'SYSTEM_LOG' ? 'work-item story-item' : 'work-item';
-                    
-                    // Unified Markdown Parsing
-                    let html = content
-                        .replace(/^---\s*$/gm, '<hr class="schizo-hr">')
-                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color: var(--accent-color)">$1</a>')
-                        .replace(/^###\s+(.*)/gm, '<h3>$1</h3>')
-                        .replace(/^\*\s+(.*)/gm, '<li>$1</li>')
-                        .replace(/\n/g, '<br>');
-                    
-                    // Wrap consecutive <li> tags in <ul>
-                    html = html.replace(/(<li>.*<\/li>)+/g, match => `<ul>${match}</ul>`);
-                    // Clean up double br after tags
-                    html = html.replace(/<\/ul><br>/g, '</ul>').replace(/<\/h3><br>/g, '</h3>').replace(/<hr class="schizo-hr"><br>/g, '<hr class="schizo-hr">');
-                    
-                    workItem.innerHTML = html;
-                    chaosSection.appendChild(workItem);
+                    // Split by ### to handle each article individually
+                    const articles = sectionContent.split(/^###\s+/gm);
+                    articles.shift(); // Remove content before first ###
+
+                    articles.forEach(article => {
+                        const articleLines = article.split('\n');
+                        const articleTitle = articleLines[0].trim();
+                        const articleBody = articleLines.slice(1).join('\n').trim();
+                        
+                        if (!articleTitle) return;
+
+                        const workItem = document.createElement('div');
+                        workItem.className = sectionTitle === 'SYSTEM_LOG' ? 'work-item story-item' : 'work-item';
+                        
+                        // Extract link if it exists in the pattern [text](url)
+                        const linkMatch = articleBody.match(/\[(.*?)\]\((.*?)\)/);
+                        let titleHtml = articleTitle;
+                        let processedBody = articleBody;
+
+                        if (linkMatch) {
+                            const url = linkMatch[2];
+                            titleHtml = `<a href="${url}" target="_blank" style="color: inherit; text-decoration: none;">${articleTitle}</a>`;
+                            // If it's the standard [ACCESS_LINK] format, remove it from body as title is now the link
+                            if (articleBody.startsWith('[ACCESS_LINK]')) {
+                                processedBody = articleBody.replace(/\[ACCESS_LINK\]\(.*?\)/, '').trim();
+                            }
+                        }
+
+                        const h4 = document.createElement('h4');
+                        h4.className = 'glitch';
+                        h4.setAttribute('data-text', articleTitle.toUpperCase());
+                        h4.innerHTML = titleHtml;
+                        workItem.appendChild(h4);
+
+                        const contentDiv = document.createElement('div');
+                        let html = processedBody
+                            .replace(/^---\s*$/gm, '<hr class="schizo-hr">')
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>')
+                            .replace(/^\*\s+(.*)/gm, '<li>$1</li>')
+                            .replace(/\n/g, '<br>');
+                        
+                        html = html.replace(/(<li>.*<\/li>)+/g, match => `<ul>${match}</ul>`);
+                        html = html.replace(/<\/ul><br>/g, '</ul>').replace(/<hr class="schizo-hr"><br>/g, '<hr class="schizo-hr">');
+                        
+                        contentDiv.innerHTML = html;
+                        workItem.appendChild(contentDiv);
+                        chaosSection.appendChild(workItem);
+                    });
+
                     container.insertBefore(chaosSection, container.querySelector('footer'));
                 });
             })
@@ -118,9 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 container.innerHTML = '';
                 
-                // Split by section headers (## )
                 const sections = text.split(/^##\s+/gm);
-                sections.shift(); // Remove title
+                sections.shift(); 
                 
                 sections.forEach(section => {
                     const lines = section.split('\n');
@@ -142,7 +234,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     const workItem = document.createElement('div');
                     workItem.className = 'work-item';
                     
-                    // Precise Line-by-Line Parsing
                     const contentLines = rawContent.split('\n');
                     let html = '';
                     let inList = false;
@@ -150,27 +241,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     contentLines.forEach(line => {
                         const trimmed = line.trim();
                         
-                        // Handle Subheaders (###)
                         if (trimmed.startsWith('###')) {
                             if (inList) { html += '</ul>'; inList = false; }
                             html += `<h4>${trimmed.replace(/^###\s+/, '')}</h4>`;
                         }
-                        // Handle List Items (*)
                         else if (trimmed.startsWith('*')) {
                             if (!inList) { html += '<ul>'; inList = true; }
                             html += `<li>${parseMarkdownInline(trimmed.replace(/^\*\s+/, ''))}</li>`;
                         }
-                        // Handle Horizontal Rules (---)
                         else if (trimmed === '---') {
                             if (inList) { html += '</ul>'; inList = false; }
                             html += '<hr class="schizo-hr">';
                         }
-                        // Handle Regular Lines / Paragraphs
                         else if (trimmed !== '') {
                             if (inList) { html += '</ul>'; inList = false; }
                             html += `<p>${parseMarkdownInline(trimmed)}</p>`;
                         }
-                        // Handle line breaks (empty lines)
                         else if (inList) {
                             html += '</ul>';
                             inList = false;
@@ -190,7 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Helper for bold and links
     function parseMarkdownInline(text) {
         return text
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -275,7 +360,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderGallery() {
-        // Drawings
         fetch('../contents/drawings.md')
             .then(response => response.text())
             .then(text => {
@@ -283,13 +367,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!container) return;
                 container.innerHTML = '';
                 text.split('\n').forEach(line => {
-                    if (line.trim().startsWith('- http')) {
-                        renderImage(line.trim().replace('- ', ''), container);
+                    const trimmed = line.trim();
+                    if (trimmed.startsWith('- http') || trimmed.startsWith('- ./')) {
+                        let url = trimmed.replace('- ', '');
+                        if (url.startsWith('./')) url = '../contents/' + url.slice(2);
+                        renderImage(url, container);
                     }
                 });
             });
 
-        // Clicks
         fetch('../contents/clicks.md')
             .then(response => response.text())
             .then(text => {
@@ -297,8 +383,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!container) return;
                 container.innerHTML = '';
                 text.split('\n').forEach(line => {
-                    if (line.trim().startsWith('- http')) {
-                        renderImage(line.trim().replace('- ', ''), container);
+                    const trimmed = line.trim();
+                    if (trimmed.startsWith('- http') || trimmed.startsWith('- ./')) {
+                        let url = trimmed.replace('- ', '');
+                        if (url.startsWith('./')) url = '../contents/' + url.slice(2);
+                        renderImage(url, container);
                     }
                 });
             });

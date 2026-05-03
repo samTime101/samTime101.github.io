@@ -1,5 +1,3 @@
-// AUTHOR SAMIP REGMI
-// REPO:https://github.com/samTime101/Random-Tetris-Rain
 const leftCanvas = document.getElementById('left-canvas');
 const ctxLeft = leftCanvas.getContext('2d');
 
@@ -11,8 +9,6 @@ const CELLWIDTH  = SCREENWIDTH / COLS
 const CELLHEIGHT  = SCREENHEIGHT / ROWS
 const FPS =  60
 
-
-  
   let mat = [];
   let buffer = []
   let score = 0;
@@ -28,7 +24,6 @@ const FPS =  60
 
   setInterval(function loop(){
 
-
   let rowR = Math.floor(Math.random() * ROWS);
   let colR = Math.floor(Math.random() * COLS);
   mat[rowR][colR] = 1;
@@ -36,9 +31,7 @@ const FPS =  60
   for (let i = ROWS - 2; i >= 0; i--) {
     for (let j = 0; j < COLS; j++) {
       if (mat[i][j] == 1 && mat[i + 1][j] == 0) {
-      //original value to 0
         buffer[i][j] = 0;
-      //moving pixel down
         buffer[i+1][j] = 1; 
       }
     }
@@ -75,10 +68,8 @@ const FPS =  60
         ctxLeft.beginPath();
         ctxLeft.fillStyle =  colors[Math.floor(Math.random() * colors.length)];
         ctxLeft.rect(col * CELLWIDTH, row * CELLHEIGHT, CELLWIDTH, CELLHEIGHT);
-        // ctxLeft.stroke();
         ctxLeft.fill(); 
         
-
       }
     }
   }
