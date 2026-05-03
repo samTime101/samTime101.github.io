@@ -1,98 +1,47 @@
+// Life Progress Logic
+// September is month 8 (0-indexed)
+const birthDate = new Date(2006, 8, 1, 0, 0, 0);
+const lifespanYears = 80;
+const totalLifespanMs = lifespanYears * 365.25 * 24 * 60 * 60 * 1000;
 
-let terminalOutput = document.querySelector('#terminal-output');
-let commandInput = document.querySelector('#command');
-let terminalContainer = document.querySelector('#terminal-container');
-let terminalInputDir = document.querySelector('#terminal-input-line .dir');
+function updateLifeProgress() {
+    const now = new Date();
+    const ageMs = now - birthDate;
+    
+    // Ensure ageMs is positive
+    if (ageMs < 0) return;
 
-let currentDir = localStorage.getItem('termCurrentDir') || '~';
+    const ageYears = ageMs / (365.25 * 24 * 60 * 60 * 1000);
+    const progressPercent = (ageMs / totalLifespanMs) * 100;
 
-terminalContainer.addEventListener('click', () => {
-    commandInput.focus();
+    const percentEl = document.getElementById('life-percentage');
+    const barEl = document.getElementById('life-bar');
+    const ageEl = document.getElementById('life-age');
+
+    if (percentEl) percentEl.textContent = `${progressPercent.toFixed(9)}%`;
+    if (barEl) barEl.style.width = `${Math.min(100, progressPercent)}%`;
+    if (ageEl) ageEl.textContent = `AGE: ${ageYears.toFixed(9)}`;
+}
+
+setInterval(updateLifeProgress, 50);
+updateLifeProgress();
+
+// Portal Animation Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const archivesBtn = document.getElementById('archives-btn');
+    const portalOverlay = document.getElementById('portal-overlay');
+
+    if (archivesBtn && portalOverlay) {
+        archivesBtn.addEventListener('click', () => {
+            portalOverlay.classList.add('active');
+            
+            // Add a "glitchy" feel to the transition
+            archivesBtn.style.pointerEvents = 'none';
+            archivesBtn.textContent = 'REDIRECTING...';
+            
+            setTimeout(() => {
+                window.location.href = 'me.html';
+            }, 1000);
+        });
+    }
 });
-
-document.addEventListener('keydown', e => {
-    if (e.key === '/') {
-        e.preventDefault();
-        commandInput.focus();
-    }
-});
-
-commandInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') {
-        let command = commandInput.value.trim();
-        printPromptLine(command);
-        if (command) {
-            processCommand(command.toLowerCase());
-        }
-        commandInput.value = '';
-        scrollToBottom();
-    }
-});
-
-function printPromptLine(command) {
-    let line = document.createElement('div');
-    line.innerHTML = `<span class="prompt"><span class="user">samipregmi@time101</span>:<span class="dir">${currentDir}</span>$</span> <span class="cmd-text">${command}</span>`;
-    terminalOutput.appendChild(line);
-}
-
-function updateInputPrompt() {
-    if (terminalInputDir) {
-        terminalInputDir.textContent = currentDir;
-    }
-}
-
-function printOutput(htmlStr) {
-    let line = document.createElement('div');
-    line.style.whiteSpace = "pre-wrap";
-    line.innerHTML = htmlStr;
-    terminalOutput.appendChild(line);
-}
-
-function scrollToBottom() {
-    terminalContainer.scrollTop = terminalContainer.scrollHeight;
-}
-
-function processCommand(input) {
-    let args = input.trim().split(/\s+/);
-    let cmd = args[0];
-    let arg1 = args[1];
-
-    if (!cmd) return;
-
-    if (cmd === 'help') helpCommand();
-    else if (cmd === 'clear') clearCommand();
-    else if (cmd === 'whoami') whoamiCommand();
-    else if (cmd === 'ls') lsCommand();
-    else if (cmd === 'cd') cdCommand(arg1);
-    else if (cmd === 'neofetch') neofetchCommand();
-    else if (cmd === 'life' || cmd === 'me') lifeCommand();
-    else if (cmd === 'clicks') clicksCommand();
-    else if (cmd === 'email') {
-        if (currentDir === '~/contacts') emailCommand();
-        else printOutput(`${cmd}: command not found`);
-    }
-    else if (cmd === 'linkedin') {
-        if (currentDir === '~/contacts') linkedinCommand();
-        else printOutput(`${cmd}: command not found`);
-    }
-    else if (cmd === 'github') {
-        if (currentDir === '~/contacts') githubCommand();
-        else printOutput(`${cmd}: command not found`);
-    }
-    else printOutput(`${cmd}: command not found`);
-}
-
-updateInputPrompt();
-commandInput.focus();
-
-// Random chaos effect for terminal
-setInterval(() => {
-    const elements = document.querySelectorAll('.cmd-text, .prompt, #terminal-output div');
-    const randomEl = elements[Math.floor(Math.random() * elements.length)];
-    if (randomEl) {
-        randomEl.style.textShadow = `1px 1px ${Math.random() > 0.5 ? '#00f2ff' : '#ff00ff'}`;
-        setTimeout(() => {
-            randomEl.style.textShadow = 'none';
-        }, 100);
-    }
-}, 3000);
