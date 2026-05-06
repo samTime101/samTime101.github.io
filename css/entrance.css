@@ -1,0 +1,57 @@
+#entrance-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 900;
+    font-family: var(--font-mono);
+    color: var(--accent-color);
+    font-size: clamp(3rem, 15vw, 8rem);
+    transition: opacity 1s ease-out;
+    text-align: center;
+    padding: 20px;
+}
+
+#entrance-text {
+    text-shadow: 0 0 20px var(--accent-color);
+    animation: entrance-flicker 0.1s infinite alternate;
+    word-break: break-all;
+}
+
+@keyframes entrance-flicker {
+    0% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.dashboard-container,
+#ascii-background,
+#data-stream,
+#mini-terminal,
+#chaos-fragments {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 1.5s ease-in !important;
+}
+
+.dashboard-container.visible,
+#ascii-background.visible,
+#data-stream.visible,
+#mini-terminal.visible,
+#chaos-fragments.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+#ascii-background.visible {
+    opacity: 0.03 !important;
+}
