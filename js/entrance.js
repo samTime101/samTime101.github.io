@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 '#ascii-background',
                 '#data-stream',
                 '#mini-terminal',
-                '#chaos-fragments'
+                '#chaos-fragments',
+                '#game-of-life-canvas'
             ];
 
             elementsToReveal.forEach(selector => {

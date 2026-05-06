@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof initGlitchEffects === 'function') initGlitchEffects();
     if (typeof initChaosFragments === 'function') initChaosFragments();
     if (typeof initMiniTerminal === 'function') initMiniTerminal();
+    if (typeof initGameOfLife === 'function') initGameOfLife();
     if (typeof initCursorTrail === 'function') initCursorTrail();
     if (typeof initGyroPhysics === 'function') initGyroPhysics();
     const archivesBtn = document.getElementById('archives-btn');
