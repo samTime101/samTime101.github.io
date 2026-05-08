@@ -6,3 +6,4 @@
 - ./clicks/4.png | [2019]
 - ./clicks/5.png | [2019]
 - ./clicks/6.png | [2019]
+- ./clicks/7.jpg | [2021]
