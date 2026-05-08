@@ -1038,6 +1038,28 @@ h3 {
     margin-top: 20px;
 }
 
+.image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.image-wrapper:hover .image-date {
+    color: var(--accent-color);
+    text-shadow: 0 0 5px var(--accent-color);
+}
+
+.image-date {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--dim-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
 .chaos-img {
     width: 100%;
     height: auto;

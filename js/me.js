@@ -369,9 +369,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 text.split('\n').forEach(line => {
                     const trimmed = line.trim();
                     if (trimmed.startsWith('- http') || trimmed.startsWith('- ./')) {
-                        let url = trimmed.replace('- ', '');
+                        const parts = trimmed.replace('- ', '').split(' | ');
+                        let url = parts[0];
+                        const date = parts[1] || '';
                         if (url.startsWith('./')) url = '../contents/' + url.slice(2);
-                        renderImage(url, container);
+                        renderImage(url, container, date);
                     }
                 });
             });
@@ -385,22 +387,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 text.split('\n').forEach(line => {
                     const trimmed = line.trim();
                     if (trimmed.startsWith('- http') || trimmed.startsWith('- ./')) {
-                        let url = trimmed.replace('- ', '');
+                        const parts = trimmed.replace('- ', '').split(' | ');
+                        let url = parts[0];
+                        const date = parts[1] || '';
                         if (url.startsWith('./')) url = '../contents/' + url.slice(2);
-                        renderImage(url, container);
+                        renderImage(url, container, date);
                     }
                 });
             });
     }
 
-    function renderImage(url, container) {
+    function renderImage(url, container, date = '') {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'image-wrapper';
+
         const img = document.createElement('img');
         img.src = url;
         img.className = 'chaos-img';
         img.loading = 'lazy';
         const tilt = (Math.random() * 4 - 2).toFixed(2);
         img.style.transform = `rotate(${tilt}deg)`;
-        container.appendChild(img);
+        
+        wrapper.appendChild(img);
+
+        if (date) {
+            const dateEl = document.createElement('span');
+            dateEl.className = 'image-date';
+            dateEl.textContent = date;
+            wrapper.appendChild(dateEl);
+        }
+
+        container.appendChild(wrapper);
     }
 
     function renderStories() {

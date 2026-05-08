@@ -1,19 +1,19 @@
 # Drawings
 
-- ./drawings/1.png
-- ./drawings/2.png
-- ./drawings/3.png
-- ./drawings/4.png
-- ./drawings/5.png
-- ./drawings/6.png
-- ./drawings/7.png
-- ./drawings/8.png
-- ./drawings/9.png
-- ./drawings/10.png
-- ./drawings/11.png
-- ./drawings/12.png
-- ./drawings/13.png
-- ./drawings/14.png
-- ./drawings/15.png
-- ./drawings/16.png
-- ./drawings/17.jpg
+- ./drawings/1.png | [2019]
+- ./drawings/2.png | [2019]
+- ./drawings/3.png | [2019]
+- ./drawings/4.png | [2019]
+- ./drawings/5.png | [2019]
+- ./drawings/6.png | [2019]
+- ./drawings/7.png | [2019]
+- ./drawings/8.png | [2019]
+- ./drawings/9.png | [2019]
+- ./drawings/10.png | [2019]
+- ./drawings/11.png | [2019]
+- ./drawings/12.png | [2019]
+- ./drawings/13.png | [2019]
+- ./drawings/14.png | [2019]
+- ./drawings/15.png | [2019]
+- ./drawings/16.png | [2019]
+- ./drawings/17.jpg | [2023]
