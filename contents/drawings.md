@@ -16,3 +16,4 @@
 - ./drawings/14.png
 - ./drawings/15.png
 - ./drawings/16.png
+- ./drawings/17.jpg
